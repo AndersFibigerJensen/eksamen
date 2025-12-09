@@ -11,6 +11,7 @@ import {
     Body,
     Tags,
     Response,
+    SuccessResponse,
 } from "tsoa"
 import AccountRouter from "../routers/accountRouter"
 import { GetBudgets,GetBudget, createBudget, deleteBudgetById, updateBudget } from "../services/BudgetService"
@@ -18,11 +19,11 @@ import { Budget } from "../output/entities/Budget"
 import type { Request as ExRequest} from "express";
 import path from "path";
 
-@Route("budget")
+@Route("user")
 @Tags()
 export class budgetController extends Controller {
 
-    @Response("200")
+     @SuccessResponse(200)
     @Get("/")
     public async getBudgets(@Request() req:ExRequest): Promise<Budget[]> {
         try {
@@ -35,7 +36,7 @@ export class budgetController extends Controller {
     }
 
     @Get("{id}")
-    @Response("200")
+     @SuccessResponse(200)
     public async getBudget(@Path() id:number) : Promise<Budget> {
         try {
             const response=await GetBudget(id)
@@ -47,7 +48,7 @@ export class budgetController extends Controller {
     }
 
     @Post("/")
-    @Response("200")
+     @SuccessResponse(200)
     public async PostBudget(@Body() budgetdata:Partial<Budget>): Promise<Budget> {
         try {
             const response=await createBudget(budgetdata)
@@ -59,7 +60,7 @@ export class budgetController extends Controller {
     };
 
     @Put("{id}")
-    @Response("200")
+     @SuccessResponse(200)
     public async PutBudget(@Path() id, @Body() budgetdata:Partial<Budget>):Promise<Budget> {
         try {
             const response=await updateBudget(id,budgetdata)
@@ -71,7 +72,7 @@ export class budgetController extends Controller {
     }
 
     @Delete("{id}")
-    @Response("200")
+     @SuccessResponse(200)
     public async Delete(@Path() id) {
         try {
             const response = await deleteBudgetById(id)

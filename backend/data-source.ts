@@ -1,5 +1,8 @@
+import { url } from "inspector";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+
+const URL= process.env.sql_database;
 
 export const AppDataSource = new DataSource({
   type: "mysql",

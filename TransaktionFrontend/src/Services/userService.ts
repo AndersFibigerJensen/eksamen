@@ -1,6 +1,7 @@
 import userClient from "../clients/userclient";
 import ApiClient from "./api-client"; 
 import { isTokenValid} from "../hooks/useAuth";
+import * as Sentry from "@sentry/react";
 
 
 export interface User {
@@ -28,12 +29,22 @@ const userService= {
     update:(id:number|string,data:Partial<User>)=> apiClient.update(id,data),
 
     login: async (username:string,password:string) => {
+        Sentry.addBreadcrumb({
+            category: "auth",
+            message: `Login attempt for user: ${username}`,
+            level: "info",
+    });
         const data = await userClient.login(username,password);
         userService.saveToken(data.token)
         return data;
     },
 
     register: async (userdata:Partial<User>) => {
+        Sentry.addBreadcrumb({
+        category: "auth",
+        message: `Register attempt for user: ${userdata.username}`,
+        level: "info",
+    });
         const data = await userClient.register(userdata);
         return data;
     },

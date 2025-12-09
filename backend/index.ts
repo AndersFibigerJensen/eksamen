@@ -13,6 +13,6 @@ app.get("/", (req, res) => {
 res.send("Hello World!");
 });
 
-app.listen(3306, () => {
-console.log("Server is running on http://localhost:3306");
+app.listen(5000, () => {
+console.log("Server is running on http://localhost:5000");
 });

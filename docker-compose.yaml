@@ -2,62 +2,57 @@ services:
   mysql:
     image: mysql:latest
     container_name: mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mydb
     ports:
-      - "3307:3306"
+      - "3306:3307"        # MySQL available at localhost:3307
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - backend
-    healthcheck: # checks if mysql is ready to accept connections
-      test: [""]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
       timeout: 3s
       retries: 10
 
-  rawg-server:
+  backend:
     container_name: backend
     build:
       context: ./backend
       dockerfile: Dockerfile
+    restart: always
     depends_on:
       mysql:
-        condition: service_healthy 
+        condition: service_healthy
     environment:
-      DATABASE_URL: mysql://root:rootpassword@mysql:3306/rawgDatabase
+      DATABASE_URL: mysql://root:rootpassword@mysql:3306/mydb
       JWT_SECRET: dev_secret
     ports:
-      - "5000:5000"
+      - "5000:5000"        # Backend API runs on port 3306
     networks:
       - backend
       - frontend
-    volumes:
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
 
-  rawg-client:
-    container_name: TransaktionFrontend
+  frontend:
+    container_name: frontend
     build:
       context: ./TransaktionFrontend
       dockerfile: Dockerfile
-    environment:
-      VITE_API_URL: http://localhost:5000
-      CHOKIDAR_USEPOLLING: true
+    restart: always
     depends_on:
-      rawg-server:
-        condition: service_healthy
+      backend:
+        condition: service_started
     ports:
       - "3000:3000"
     networks:
       - frontend
     volumes:
       - ./TransaktionFrontend:/app
-      - /app/node_modules # exclude from mounted volumes: much faster startup time, let the container to install the dependencies
+      - /app/node_modules
+
 volumes:
   mysql_data:
 
