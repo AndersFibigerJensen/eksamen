@@ -17,9 +17,9 @@ import { Goal } from "../output/entities/Goal";
 import { createGoal, deleteGoalById, GetGoal, GetGoals, updateGoal } from "../services/GoalService";
 
 @Route("goal")
-@Tags()
-export class budgetController extends Controller {
-    @Get("/")
+@Tags("goal")
+export class GoalController extends Controller {
+    @Get()
      @SuccessResponse(200)
     public async getGoals(@Request() req:ExRequest): Promise<Goal[]> {
         try {
@@ -38,20 +38,22 @@ export class budgetController extends Controller {
             const response=await GetGoal(id)
             return response
         }
-        catch {
-            
+        catch (error) {
+            this.setStatus(404);
+            throw new Error("Failed to fetch goal");
         }
     }
 
-    @Post("/")
+    @Post()
      @SuccessResponse(201)
     public async PostGoal(@Body() goaldata:Partial<Goal>): Promise<Goal> {
         try {
             const response=await createGoal(goaldata)
             return response
         }
-        catch {
-
+        catch (error) {
+            this.setStatus(400)
+            throw new Error("failed to add goal")
         }
     };
 
@@ -62,20 +64,23 @@ export class budgetController extends Controller {
             const response=await updateGoal(id,GoalData)
             return response
         }
-        catch {
-
+        catch(error) {
+            
+            this.setStatus(404);
+            throw new Error("Failed to update transaction");
         }
     }
 
     @Delete("{id}")
      @SuccessResponse(200)
-    public async Delete(@Path() id:number) {
+    public async Delete(@Path() id:number):Promise<void> {
         try {
             const response = await deleteGoalById(id)
-            return response
         }
-        catch {
-
+        catch(error) {
+            
+            this.setStatus(404);
+            throw new Error("Failed to delete transaction");
         }
     }
 

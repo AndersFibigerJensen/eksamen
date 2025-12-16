@@ -10,26 +10,23 @@ import {
     Path,
     Body,
     Tags,
-    Response,
-    SuccessResponse,
+    SuccessResponse
 } from "tsoa"
-import AccountRouter from "../routers/accountRouter"
 import { GetBudgets,GetBudget, createBudget, deleteBudgetById, updateBudget } from "../services/BudgetService"
 import { Budget } from "../output/entities/Budget"
 import type { Request as ExRequest} from "express";
-import path from "path";
 
 @Route("budget")
-@Tags()
-export class budgetController extends Controller {
-    @Get("/")
+@Tags("budget")
+export class BudgetController extends Controller {
+    @Get()
      @SuccessResponse(200)
     public async getBudgets(@Request() req:ExRequest): Promise<Budget[]> {
         try {
             const response = await GetBudgets(req);
             return response.results;
         } catch (e) {
-            this.setStatus(500);
+            this.setStatus(400);
             throw new Error("Failed to fetch budgets");
         }
     }
@@ -42,20 +39,22 @@ export class budgetController extends Controller {
             const response=await GetBudget(id)
             return response
         }
-        catch {
-            
+        catch(error) {
+            this.setStatus(404)
+            throw new Error("failed to get budget")
         }
     }
 
-    @Post("/")
+    @Post()
      @SuccessResponse(201)
     public async PostBudget(@Body() budgetdata:Partial<Budget>): Promise<Budget> {
         try {
             const response=await createBudget(budgetdata)
             return response
         }
-        catch {
-
+        catch(error) {
+            this.setStatus(400)
+            throw new Error("failed to add a budget")
         }
     };
 
@@ -66,8 +65,9 @@ export class budgetController extends Controller {
             const response=await updateBudget(id,budgetdata)
             return response
         }
-        catch {
-
+        catch(error) {
+            this.setStatus(400)
+            throw new Error("failed to update budget")
         }
     }
 
@@ -78,10 +78,9 @@ export class budgetController extends Controller {
             const response = await deleteBudgetById(id)
             return response
         }
-        catch {
-
+        catch(error) {
+            this.setStatus(404)
+            throw new Error("failed to delete budget")
         }
     }
-
-
 }

@@ -24,14 +24,15 @@ const UserForm = ({initialValues,onSubmit}:props) => {
             e.preventDefault();
             onSubmit(formValues);
         };
+        
         return(
       <form onSubmit={handleSubmit}>
     <Box display={"flex"} flexDirection={"column"}
       justifyContent={"center"} alignItems={"center"} height={"70vh"}>
       <Box textAlign={"center"} width={"sm"}>
-        <Textinput isRequired={true} type="text" label="username" value={""}  onChange={(e)=>handleChange("date",e.target.value)} />
-        <Textinput isRequired={true} type="text" label="password" value={""}  onChange={(e)=>handleChange("date",e.target.value)} />
-        <Textinput isRequired={true} type="text" label="email" value={""}  onChange={(e)=>handleChange("date",e.target.value)} />
+        <Textinput isRequired={true} type="text" label="username"  onChange={(e)=>handleChange("date",e.target.value)} />
+        <Textinput isRequired={true} type="text" label="password"  onChange={(e)=>handleChange("date",e.target.value)} />
+        <Textinput isRequired={true} type="text" label="email"  onChange={(e)=>handleChange("date",e.target.value)} />
       </Box>
       <HStack>
         <Button>register </Button>

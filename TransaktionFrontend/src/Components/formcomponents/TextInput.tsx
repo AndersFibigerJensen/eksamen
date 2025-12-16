@@ -19,9 +19,9 @@ const Textinput:React.FC<TextinputProps> = ({
     size
 }) => {
     return (
-        <FormControl isRequired={isRequired} borderRadius={"15"}>
+        <FormControl isRequired={isRequired} borderRadius={"15"}padding={padding}>
             <FormLabel>{label} </FormLabel>
-                <Input onChange={onChange} backgroundColor={"blue.600"} type={type} padding={padding} boxSize={size}/>
+                <Input onChange={onChange} backgroundColor={"blue.600"} type={type}  boxSize={size}/>
         </FormControl>
     )   
 }

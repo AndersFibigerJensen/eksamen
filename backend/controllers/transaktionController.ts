@@ -18,11 +18,11 @@ import { Transaktion } from "../output/entities/Transaktion";
 import { createTransaktion, deleteTransaktionById, GetTransaktion, GetTransaktions, updateTransaktion } from "../services/TransaktionService";
 
 @Route("transaktion")
-@Tags()
-export class transaktionController extends Controller {
+@Tags("transaktion")
+export class TransaktionController extends Controller {
 
     
-    @Get("/")
+    @Get()
     @SuccessResponse(200)
     public async getTransaktions(@Request() req:ExRequest): Promise<Transaktion[]> {
         try {
@@ -44,12 +44,12 @@ export class transaktionController extends Controller {
             this.setStatus(200)
             return response
         }
-        catch {
+        catch(error) {
             
         }
     }
 
-    @Post("/")
+    @Post()
     @SuccessResponse(201)
     public async PostBudget(@Body() transaktiondata:Partial<Transaktion>): Promise<Transaktion> {
         try {
@@ -57,8 +57,9 @@ export class transaktionController extends Controller {
             this.setStatus(200)
             return response
         }
-        catch {
-
+        catch (error) {
+            this.setStatus(400);
+            throw new Error("Failed to add a transaction");
         }
     };
 
@@ -70,7 +71,9 @@ export class transaktionController extends Controller {
             this.setStatus(200)
             return response
         }
-        catch {
+        catch (error) {
+            this.setStatus(404);
+            throw new Error("Failed to update transaction");
 
         }
     }
@@ -82,7 +85,9 @@ export class transaktionController extends Controller {
             const response = await deleteTransaktionById(id)
             return response
         }
-        catch {
+        catch (error) {
+            this.setStatus(404);
+            throw new Error("Failed to find transaction");
 
         }
     }

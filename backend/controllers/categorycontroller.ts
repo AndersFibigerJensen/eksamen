@@ -15,12 +15,11 @@ import {
 import type { Request as ExRequest} from "express";
 import { Category } from "../output/entities/Category";
 import { createCategory, deleteCategory, GetCategories, GetCategory, updateCategory } from "../services/CategoryService";
-import { Account } from "../output/entities/Account";
 
 @Route("category")
-@Tags()
+@Tags("category")
 export class CategoryController extends Controller {
-    @Get("/")
+    @Get()
     @Response("200")
     public async getAccounts(@Request() req:ExRequest): Promise<Category[]> {
         try {
@@ -39,12 +38,13 @@ export class CategoryController extends Controller {
             const response=await GetCategory(id)
             return response
         }
-        catch {
-            
+        catch(error) {
+            this.setStatus(404)
+            throw new Error("failed to find category")
         }
     }
 
-    @Post("/")
+    @Post()
     @Response(201)
     public async PostCategory(@Body() categorydata:Partial<Category>): Promise<Category> {
         try {
@@ -52,7 +52,7 @@ export class CategoryController extends Controller {
             return response
         }
         catch {
-
+            throw new Error("failed to add a new category")
         }
     };
 
@@ -63,20 +63,23 @@ export class CategoryController extends Controller {
             const response=await updateCategory(id,categorydata)
             return response
         }
-        catch {
-
+        catch(error) {
+            this.setStatus(404)
+            this.setStatus(400)
+            throw new Error("failed to find category")
         }
     }
 
     @Delete("{id}")
     @Response(200)
-    public async Delete(@Path() id:number) {
+    public async CategoryDelete(@Path() id:number) {
         try {
             const response = await deleteCategory(id)
             return response
         }
-        catch {
-
+        catch(error) {
+            this.setStatus(404)
+            throw new Error("failed to delete category")
         }
     }
 

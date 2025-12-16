@@ -26,6 +26,7 @@ const TransaktionForm= ({initialValues,onSubmit}:TransaktionFormProps) => {
 
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log(formValues)
         onSubmit(formValues);
     };
     
@@ -36,16 +37,15 @@ const TransaktionForm= ({initialValues,onSubmit}:TransaktionFormProps) => {
             <Box width={"sm"} textAlign={"center"}>
                 <Box>
                     <HStack>
-                    <Textinput isRequired={true} type="number" label="name"
+                    <Textinput isRequired={true} type="number" label="amount"
                     onChange={(e)=>handleChange("amount",e.target.value)}/>
                     <Textinput isRequired={false} type="text" label="description"
                     onChange={(e)=>handleChange("description",e.target.value)}/>
                 </HStack>
                 </Box>
-
                     <Textinput isRequired={true} type='datetime-local'  label="date"
                     onChange={(e)=>handleChange("date",e.target.value)}/>
-                <CategorySelector/>
+                <CategorySelector Onchange={(e)=>handleChange("categoryIdCategory",e.target.value)}/>
                 <HStack alignItems={"center"} align={"center"} padding={5}>
                     <Button type="submit">add </Button>
                     <Button>
@@ -55,8 +55,6 @@ const TransaktionForm= ({initialValues,onSubmit}:TransaktionFormProps) => {
             </Box>
         </Box>
         </form>
-
-
     )
 
 }

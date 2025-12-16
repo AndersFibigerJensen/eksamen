@@ -4,7 +4,7 @@ import UseTransaktionlist from "../../queries/transaktion";
 
 
 interface props {
-    Onchange?: (e: React.ChangeEvent<HTMLOptionElement>) => void;
+    Onchange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 
@@ -12,9 +12,9 @@ const categorySelect:React.FC<props>  = ({Onchange}) => {
     const {data}=UseCategories();
     const setValues= UseTransaktionlist((s)=>s.setCategory)
     return (
-        <Select padding={2}>
+        <Select padding={2} onChange={Onchange}>
             {data?.results.map((category)=>(
-                <option key={category.idCategory} onClick={()=>setValues(category.idCategory)} onChange={Onchange}>
+                <option key={category.idCategory} onClick={()=>setValues(category.idCategory)} >
                     {category.name}
                 </option>
             ))}

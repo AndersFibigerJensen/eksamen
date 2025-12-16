@@ -1,5 +1,5 @@
 import UseGoals from "../hooks/getall/goalshook";
-import { Box, Grid, GridItem, HStack, Input, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Grid, GridItem, HStack, Input, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 
 
 
@@ -14,6 +14,7 @@ const GoalList = () => {
                 <HStack padding={5}>
                     <Input backgroundColor={"blue.600"} htmlSize={25} width='auto' type="datetime-local"/>
                     <Input backgroundColor={"blue.600"} htmlSize={25} width='auto' type="datetime-local"/>
+                    <Button>add</Button>
                 </HStack>
             </Box>
             <Table backgroundColor={"green.700"} variant={"simple"}  border="10px" borderColor={"blue.700"}>
@@ -33,7 +34,12 @@ const GoalList = () => {
                             <Td>{g.currentAmount}</Td>
                             <Td>{g.targetAmount}</Td>
                             <Td>{g.status}</Td>
-                            <Td></Td>
+                            <Td>
+                                <HStack>
+                                    <Button>update</Button>
+                                    <Button>Delete</Button>
+                                </HStack>
+                            </Td>
                         </Tr>
                         )}
                 </Tbody>

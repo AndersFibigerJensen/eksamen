@@ -5,29 +5,27 @@ import {
     Put,
     Delete,
     Route,
-    Query,
     Request,
     Path,
     Body,
     Tags,
-    Response,
     SuccessResponse,
 } from "tsoa"
-import AccountRouter from "../routers/accountRouter"
-import { GetBudgets,GetBudget, createBudget, deleteBudgetById, updateBudget } from "../services/BudgetService"
-import { Budget } from "../output/entities/Budget"
-import type { Request as ExRequest} from "express";
-import path from "path";
+import type { Request as ExRequest,Response as ExResponse } from "express";
+import { Transaktion } from "../output/entities/Transaktion";
+import { createTransaktion, deleteTransaktionById, GetTransaktion, GetTransaktions, updateTransaktion } from "../services/TransaktionService";
 
 @Route("user")
-@Tags()
-export class budgetController extends Controller {
+@Tags("user")
+export class TransaktionController extends Controller {
 
-     @SuccessResponse(200)
-    @Get("/")
-    public async getBudgets(@Request() req:ExRequest): Promise<Budget[]> {
+    
+    @Get()
+    @SuccessResponse(200)
+    public async getTransaktions(@Request() req:ExRequest): Promise<Transaktion[]> {
         try {
-            const response = await GetBudgets(req);
+            const response = await GetTransaktions(req);
+            this.setStatus(200)
             return response.results;
         } catch (e) {
             this.setStatus(500);
@@ -35,50 +33,59 @@ export class budgetController extends Controller {
         }
     }
 
+    
     @Get("{id}")
-     @SuccessResponse(200)
-    public async getBudget(@Path() id:number) : Promise<Budget> {
+    @SuccessResponse(200)
+    public async getTransaktion(@Path() id:string) : Promise<Transaktion> {
         try {
-            const response=await GetBudget(id)
+            const response=await GetTransaktion(id)
+            this.setStatus(200)
             return response
         }
-        catch {
+        catch(error) {
             
         }
     }
 
-    @Post("/")
-     @SuccessResponse(200)
-    public async PostBudget(@Body() budgetdata:Partial<Budget>): Promise<Budget> {
+    @Post()
+    @SuccessResponse(201)
+    public async PostBudget(@Body() transaktiondata:Partial<Transaktion>): Promise<Transaktion> {
         try {
-            const response=await createBudget(budgetdata)
+            const response=await createTransaktion(transaktiondata)
+            this.setStatus(200)
             return response
         }
-        catch {
-
+        catch (error) {
+            this.setStatus(400);
+            throw new Error("Failed to add a transaction");
         }
     };
 
     @Put("{id}")
-     @SuccessResponse(200)
-    public async PutBudget(@Path() id, @Body() budgetdata:Partial<Budget>):Promise<Budget> {
+    @SuccessResponse(200)
+    public async PutBudget(@Path() id:number, @Body() transaktiondata:Partial<Transaktion>):Promise<Transaktion> {
         try {
-            const response=await updateBudget(id,budgetdata)
+            const response=await updateTransaktion(id,transaktiondata)
+            this.setStatus(200)
             return response
         }
-        catch {
+        catch (error) {
+            this.setStatus(404);
+            throw new Error("Failed to update transaction");
 
         }
     }
 
     @Delete("{id}")
-     @SuccessResponse(200)
-    public async Delete(@Path() id) {
+    @SuccessResponse(200)
+    public async Delete(@Path() id:number) {
         try {
-            const response = await deleteBudgetById(id)
+            const response = await deleteTransaktionById(id)
             return response
         }
-        catch {
+        catch (error) {
+            this.setStatus(404);
+            throw new Error("Failed to find transaction");
 
         }
     }

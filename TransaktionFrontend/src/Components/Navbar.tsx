@@ -15,7 +15,7 @@ const Navbar = () => {
     ? (
       <>
         <Box><Button><Link to="/AccountPage">Account</Link></Button></Box>
-        <Box><Button><Link to="/TransaktionForm">Transaktion</Link></Button></Box>
+        <Box><Button><Link to="/transaktion">Transaktion</Link></Button></Box>
         <Box><Button onClick={logout}>logout</Button></Box>
       </>
     )

@@ -24,8 +24,8 @@ const TransaktionPost = () => {
             date:"0",
             description:"",
             type:"income",
-            accountIdAccount:0,
-            categoryIdCategory:0,
+            accountIdAccount:1,
+            categoryIdCategory:1,
             
         }} onSubmit={(values)=>mutate(values)}>
 
