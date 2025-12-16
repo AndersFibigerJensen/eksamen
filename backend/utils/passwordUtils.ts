@@ -13,3 +13,14 @@ export function comparePassword(
       {
     return bcrypt.compare(password, hashedPassword);
 }
+
+export function hashuserid(id:string):Promise<string>
+{
+    const saltRounds =10;
+    return bcrypt.hash(id,saltRounds)
+}
+
+export function compareUserId(id:string,hashuserid):Promise<string>
+{
+    return 
+}

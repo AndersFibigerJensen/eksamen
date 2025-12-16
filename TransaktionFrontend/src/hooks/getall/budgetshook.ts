@@ -19,11 +19,9 @@ const UseBudgets=() => {
             params:{
                 userId:BudgetQuery.userId,
                 CategoryId:BudgetQuery.categoryid,
-                pagesize:BudgetQuery.pageSize
+                pagesize:BudgetQuery.pageSize,
+                userid: BudgetQuery.userId
             },
-            headers:{
-                CategoryId:BudgetQuery.userId
-            }
         })
     });
 } 

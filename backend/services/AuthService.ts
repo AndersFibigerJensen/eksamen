@@ -12,7 +12,6 @@ export class AuthService {
 
     static async register(UserData:Partial<User>)
     {
-        console.log(UserData)
         const userdata= UserData
         const {username,password,email,createdAt}=userdata
         const existingusername = await this.userrepository.findOneBy({ username });

@@ -49,7 +49,7 @@ const BudgetForm = ({initialValues,onSubmit}:props) => {
                             <Input backgroundColor={"blue.600"} onChange={(e)=>handleChange("date",e.target.value)}/>
                     </FormControl>
                     <FormControl isRequired={true} borderRadius={"15"}>
-                        <FormLabel>amount </FormLabel>
+                        <FormLabel>date </FormLabel>
                             <Input backgroundColor={"blue.600"} onChange={(e)=>handleChange("date",e.target.value)}/>
                     </FormControl>               
                 </HStack>

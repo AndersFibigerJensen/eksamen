@@ -12,6 +12,7 @@ export class UserClient {
             const res= await axiosInstance.post(`/${this.basepath}/login`,{
                 username,
                 password});
+            console.log(res)
             return res.data;
     }
 

@@ -34,9 +34,17 @@ const userService= {
             message: `Login attempt for user: ${username}`,
             level: "info",
     });
+    try
+    {
         const data = await userClient.login(username,password);
         userService.saveToken(data.token)
+  
         return data;
+    } catch(Error)
+    {
+        Sentry.captureException(Error)
+    }
+
     },
 
     register: async (userdata:Partial<User>) => {

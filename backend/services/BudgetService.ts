@@ -84,7 +84,7 @@ const sortorder = (
 const buildBudgetQuery = (req:any) =>
 {
     const categoryId=req.query.CategoryId ? Number(req.query.CategoryId): undefined
-    const userId = req.header.userId ? Number(req.query.userId) : undefined
+    const userId = req.query.userId ? Number(req.query.userId) : undefined
     const TransaktionDateHigh= req.query.TransaktionDateHigh ? String(req.query.TransaktionDateHigh) : undefined
     const TransaktionDateLow= req.query.TransaktionDateLow ? String(req.query.TransaktionDateLow) : undefined
     const queryBuilder=BudgetRepository

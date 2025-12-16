@@ -6,18 +6,22 @@ interface TextinputProps {
     isRequired: boolean;
     type: string;
     label:string;
+    padding?:number;
+    size?:string
 }
 
 const Textinput:React.FC<TextinputProps> = ({
     onChange,
     isRequired,
     label,
-    type
+    type,
+    padding,
+    size
 }) => {
     return (
         <FormControl isRequired={isRequired} borderRadius={"15"}>
             <FormLabel>{label} </FormLabel>
-                <Input onChange={onChange} backgroundColor={"blue.600"} type={type}/>
+                <Input onChange={onChange} backgroundColor={"blue.600"} type={type} padding={padding} boxSize={size}/>
         </FormControl>
     )   
 }
