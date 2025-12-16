@@ -1,16 +1,12 @@
 import { Box, HStack, Input, Table, Tbody, Td, Thead, Tr} from "@chakra-ui/react";
 import UseBudgets from "../hooks/getall/budgetshook";
-import { UseAuth } from "../hooks/useAuth";
-import useBudgetlist from "../queries/budget";
+
 
 
 const BudgetList = () => {
 
-    const{user} =UseAuth()
-    console.log(user)
-    const {data: Budgets}= UseBudgets()
-    useBudgetlist((s)=>s.setUserId(user.id))
-
+    const {data}= UseBudgets()
+    console.log(data)
     return (
         <Box>
             <Box padding={1}>
@@ -23,22 +19,22 @@ const BudgetList = () => {
                 <Thead>
                 </Thead>
                 <Tbody>
-                    {Budgets?.results.map((b)=>
+                    {data?.results.map((b)=>
                     <Tr key={b.idBudget}>
                         <Td>
                             {b.amount}
                         </Td>
+
                         <Td>
                             {b.budgetDate}
                         </Td>
                         <Td>
-                            {b.CategoryIdCategory2.name}
+                            {b.CategoryIdCategory2?.name}
                         </Td>
                     </Tr> )}
                 </Tbody>
             </Table>
         </Box>
-
     );
 };
 

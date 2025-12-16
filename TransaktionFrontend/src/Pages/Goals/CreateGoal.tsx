@@ -20,7 +20,7 @@ const CreateGoal = () => {
             name:"",
             currentamount:0,
             targetamount:0,
-            status:"",
+            status:"in progress",
             userIdUser:user.id
         }} onSubmit={(values)=>mutate(values)}/>
     )

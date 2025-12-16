@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FormControl, FormLabel, HStack, Input } from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, HStack, Input } from "@chakra-ui/react";
 import CenterBox from "../CenterBox";
 import type { User } from "../../Services/userService";
 import type { Category } from "../../Services/categoryService";
 import { useState } from "react";
+import CategorySelector from "../formcomponents/CategorySelector";
 
 interface props {
     initialValues:{
@@ -40,18 +41,16 @@ const BudgetForm = ({initialValues,onSubmit}:props) => {
                     </FormControl>
                     <FormControl isRequired={true} borderRadius={"15"}>
                         <FormLabel>budgetdate </FormLabel>
-                            <Input backgroundColor={"blue.600"} onChange={(e)=>handleChange("date",e.target.value)}/>
+                            <Input backgroundColor={"blue.600"} onChange={(e)=>handleChange("date",e.target.value)}
+                            type="datetime-local"/>
                     </FormControl>
                 </HStack>
                 <HStack>
-                    <FormControl isRequired={true} borderRadius={"15"}>
-                        <FormLabel>amount </FormLabel>
-                            <Input backgroundColor={"blue.600"} onChange={(e)=>handleChange("date",e.target.value)}/>
-                    </FormControl>
-                    <FormControl isRequired={true} borderRadius={"15"}>
-                        <FormLabel>date </FormLabel>
-                            <Input backgroundColor={"blue.600"} onChange={(e)=>handleChange("date",e.target.value)}/>
-                    </FormControl>               
+                    <CategorySelector></CategorySelector>         
+                </HStack>
+                <HStack padding={5}>
+                    <Button>add</Button>
+                    <Button>cancel</Button>
                 </HStack>
             </CenterBox>
         </form>

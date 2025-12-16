@@ -4,7 +4,6 @@ import { AppDataSource } from "../data-source";
 import { Category } from "../output/entities/Category";
 import { User } from "../output/entities/User";
 import { createBudget, deleteBudgetById, GetBudget, GetBudgets, updateBudget } from "../services/BudgetService";
-import { error } from "console";
 import { Max_Page_size } from "./categoryRouter";
 
 interface ModifiedBudget {
@@ -60,10 +59,17 @@ const buildBudgetsResponse= (
 
 
 
-BudgetRouter.get("/", async (req, res) => { 
-    const {results,count}= await GetBudgets(req)
-    const response:Response= buildBudgetsResponse(results,count,req)
+BudgetRouter.get("/", async (req, res) => {
+    try{
+          console.log("GET /budgets", Date.now(), "headersSent:", res.headersSent);
+        const {results,count}= await GetBudgets(req)
+        const response:Response= await buildBudgetsResponse(results,count,req)
     res.json(response);
+    }
+    catch(error) {
+        return res.status(500).send({error})
+    }
+
 });
 
 BudgetRouter.get("/:id",async(req,res)=>
@@ -74,8 +80,6 @@ BudgetRouter.get("/:id",async(req,res)=>
         if(budget)
         {
             res.send(budget)
-        } else {
-            res.status(404).send({error:"budget not found"})
         }
     }
     catch(error) {

@@ -6,7 +6,7 @@ import goalService from "../../Services/goalService";
 
 const UseGoals=() => 
     useQuery<Response<goal>,Error>({
-        queryKey: ["categories"],
+        queryKey: ["goals"],
         queryFn: goalService.getAll,
         
     });

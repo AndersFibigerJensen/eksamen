@@ -4,8 +4,8 @@ export interface budgetQuery {
     sortorder?: string;
     userId?: number;
     categoryid?:number
-    DateLow?: number;
-    DateHigh?: number;
+    dateLow?: number;
+    dateHigh?: number;
     pageSize?:number;
 }
 
@@ -25,13 +25,13 @@ const useBudgetlist = create<budget>((set) => ({
             budgetQuery: { ...state.budgetQuery, userId: userId },
         })),
     
-    setDateLow: (DateLow) =>
+    setDateLow: (dateLow) =>
         set((state) => ({
-            budgetQuery: { ...state.budgetQuery, DateLow },
+            budgetQuery: { ...state.budgetQuery, dateLow },
         })),
-    setDateHigh: (DateHigh) =>
+    setDateHigh: (dateHigh) =>
         set((state) => ({
-            budgetQuery: { ...state.budgetQuery, DateHigh },
+            budgetQuery: { ...state.budgetQuery, dateHigh },
         })),
     setCategory: (categoryid) =>
         set((state)=>({

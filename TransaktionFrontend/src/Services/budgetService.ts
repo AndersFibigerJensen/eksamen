@@ -8,7 +8,7 @@ export interface budget {
     budgetDate:string|null,
     categoryIdCategory:number,
     userIdUser:number,
-    CategoryIdCategory2:Category
+    CategoryIdCategory2:Category,
     UserIdUser2:User
 }
 

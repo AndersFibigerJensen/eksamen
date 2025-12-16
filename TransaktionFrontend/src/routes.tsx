@@ -14,6 +14,7 @@ import TransaktionPost from "./Pages/Transaktions/TransaktionPost";
 import DeleteGoal from "./Pages/Goals/DeleteGoal";
 import EditBudget from "./Pages/Budgets/EditBudget";
 import PostBudget from "./Pages/Budgets/PostBudget";
+import BudgetList from "./Components/BudgetList";
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
             {path: "/AccountPage", element: <AccountPage/> },
             {path: "/register", element: <RegisterPage/>},
             {path: "/goals", element:<GoalPage/>},
+            {path: "/budget", element:<BudgetList/>},
             {path: "/TransaktionEdit:/id", element:<TransaktionEdit/>},
             {path: "/TransaktionDelete:/id", element:<TransaktionDelete/>},
             {path: "/TransaktionPost", element:<TransaktionPost/>},

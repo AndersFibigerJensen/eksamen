@@ -16,6 +16,8 @@ const Navbar = () => {
       <>
         <Box><Button><Link to="/AccountPage">Account</Link></Button></Box>
         <Box><Button><Link to="/transaktion">Transaktion</Link></Button></Box>
+        <Box><Button><Link to="/goals">goals</Link></Button></Box>
+        <Box><Button><Link to="/budget">budgets</Link></Button></Box>
         <Box><Button onClick={logout}>logout</Button></Box>
       </>
     )

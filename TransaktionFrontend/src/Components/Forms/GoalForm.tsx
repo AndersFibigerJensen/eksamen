@@ -46,7 +46,7 @@ const GoalForm = ({initialValues,onSubmit}:props) => {
             </Box>
         </Box>
             </form>
-        )
+    )
 }
 
 export default GoalForm;
