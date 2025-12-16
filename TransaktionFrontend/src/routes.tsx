@@ -29,13 +29,13 @@ const router = createBrowserRouter([
             {path: "/register", element: <RegisterPage/>},
             {path: "/goals", element:<GoalPage/>},
             {path: "/budget", element:<BudgetList/>},
-            {path: "/TransaktionEdit:/id", element:<TransaktionEdit/>},
-            {path: "/TransaktionDelete:/id", element:<TransaktionDelete/>},
+            {path: "/TransaktionEdit/:id", element:<TransaktionEdit/>},
+            {path: "/TransaktionDelete/:id", element:<TransaktionDelete/>},
             {path: "/TransaktionPost", element:<TransaktionPost/>},
             {path: "/CreateGoal",element:<CreateGoal/>},
-            {path: "/EditGoal:/id",element:<EditGoal/>},
-            {path: "/DeleteGoal:/id",element:<DeleteGoal/>},
-            {path: "/EditBudget:/id",element:<EditBudget/>},
+            {path: "/EditGoal/:id",element:<EditGoal/>},
+            {path: "/DeleteGoal/:id",element:<DeleteGoal/>},
+            {path: "/EditBudget/.id",element:<EditBudget/>},
             {path: "/PostBudget",element:<PostBudget/>}
 
         ],

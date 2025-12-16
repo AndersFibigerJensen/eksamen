@@ -1,6 +1,7 @@
 import UseGoals from "../hooks/getall/goalshook";
 import { Box, Button, Grid, GridItem, HStack, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import CenterBox from "./CenterBox";
+import { Link } from "react-router-dom";
 
 
 
@@ -31,8 +32,12 @@ const GoalList = () => {
                             <Td>{g.status}</Td>
                             <Td>
                                 <HStack>
-                                    <Button>update</Button>
-                                    <Button>Delete</Button>
+                                        <Link to={`/DeleteGoal/${g.idGoal}`}>
+                                        <Button colorScheme="red" size="sm">Delete</Button>
+                                        </Link>
+                                        <Link to={`/EditGoal/${g.idGoal}`}>
+                                        <Button colorScheme="red" size="sm">Update</Button>
+                                        </Link>
                                 </HStack>
                             </Td>
                         </Tr>

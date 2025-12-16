@@ -1,5 +1,6 @@
-import { Box, Button, HStack, Input, Table, Tbody, Td, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, HStack, Input, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import UseTransaktions from "../hooks/getall/transaktionshook";
+import { Link } from "react-router";
 
 
 const TransaktionList = () => {
@@ -15,6 +16,10 @@ const TransaktionList = () => {
                     </Box>
                     <Table size={"lg"}>
                         <Thead>
+                            <Th>amount </Th>
+                            <Th>date </Th>
+                            <Th>type of income</Th>
+                            <Th>category </Th>
                         </Thead>
                         <Tbody>
                             {Transkaktions?.results.map((b)=>
@@ -33,8 +38,12 @@ const TransaktionList = () => {
                                 </Td>
                                 <Td>
                                     <HStack>
-                                        <Button>update</Button>
-                                        <Button>delete</Button>
+                                        <Link to={`/TransaktionDelete/${b.idTransaktion}`}>
+                                        <Button colorScheme="red" size="sm">Delete</Button>
+                                        </Link>
+                                        <Link to={`/TransaktionEdit/${b.idTransaktion}`}>
+                                        <Button colorScheme="red" size="sm">Update</Button>
+                                        </Link>
                                     </HStack>
                                 </Td>
                             </Tr> )}
