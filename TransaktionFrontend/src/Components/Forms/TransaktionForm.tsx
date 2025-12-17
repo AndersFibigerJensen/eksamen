@@ -4,6 +4,7 @@ import Textinput from "../formcomponents/TextInput"
 import { Link } from "react-router"
 import { useState } from "react"
 import CategorySelector from "../formcomponents/CategorySelector";
+import StatusSelector from "../formcomponents/statusSelector";
 
 interface TransaktionFormProps {
     initialValues:{
@@ -46,6 +47,9 @@ const TransaktionForm= ({initialValues,onSubmit}:TransaktionFormProps) => {
                     <Textinput isRequired={true} type='datetime-local'  label="date"
                     onChange={(e)=>handleChange("date",e.target.value)}/>
                 <CategorySelector Onchange={(e)=>handleChange("categoryIdCategory",e.target.value)}/>
+                <Box>
+                    <StatusSelector/>
+                </Box>
                 <HStack alignItems={"center"} align={"center"} padding={5}>
                     <Button type="submit">add </Button>
                     <Button>

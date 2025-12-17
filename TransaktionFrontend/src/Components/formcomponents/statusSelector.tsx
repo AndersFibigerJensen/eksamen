@@ -6,7 +6,7 @@ interface props {
 }
 
 
-const statusSelector:React.FC<props> = ({Onchange}) => {
+const StatusSelector:React.FC<props> = ({Onchange}) => {
     return(
         <Select onChange={Onchange}>
             <option>income</option>
@@ -15,4 +15,4 @@ const statusSelector:React.FC<props> = ({Onchange}) => {
     )
 
 }
-export default statusSelector
+export default StatusSelector

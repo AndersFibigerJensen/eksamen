@@ -14,12 +14,15 @@ const TransaktionList = () => {
                             <Input backgroundColor={"blue.600"} htmlSize={25} width='auto' type="datetime-local"/>
                         </HStack>
                     </Box>
-                    <Table size={"lg"}>
+                    <Table>
                         <Thead>
-                            <Th>amount </Th>
-                            <Th>date </Th>
-                            <Th>type of income</Th>
-                            <Th>category </Th>
+                            <Tr>
+                                <Th>amount </Th>
+                                <Th>date </Th>
+                                <Th>type of income</Th>
+                                <Th>category </Th>
+                            </Tr>
+   
                         </Thead>
                         <Tbody>
                             {Transkaktions?.results.map((b)=>

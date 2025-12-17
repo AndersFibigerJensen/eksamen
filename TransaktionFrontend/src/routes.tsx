@@ -15,6 +15,7 @@ import DeleteGoal from "./Pages/Goals/DeleteGoal";
 import EditBudget from "./Pages/Budgets/EditBudget";
 import PostBudget from "./Pages/Budgets/PostBudget";
 import BudgetList from "./Components/BudgetList";
+import DeleteBudget from "./Pages/Budgets/DeleteBudget";
 
 
 const router = createBrowserRouter([
@@ -35,7 +36,8 @@ const router = createBrowserRouter([
             {path: "/CreateGoal",element:<CreateGoal/>},
             {path: "/EditGoal/:id",element:<EditGoal/>},
             {path: "/DeleteGoal/:id",element:<DeleteGoal/>},
-            {path: "/EditBudget/.id",element:<EditBudget/>},
+            {path: "/EditBudget/:id",element:<EditBudget/>},
+            {path: "/DeleteBudget/:id",element:<DeleteBudget/>},
             {path: "/PostBudget",element:<PostBudget/>}
 
         ],

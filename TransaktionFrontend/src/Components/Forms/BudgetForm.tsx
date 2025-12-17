@@ -8,6 +8,7 @@ import CategorySelector from "../formcomponents/CategorySelector";
 
 interface props {
     initialValues:{
+        budgetid:number
         amount?:number;
         budgetDate?:string|null;
         categoryIdCategory?:number;
@@ -28,9 +29,10 @@ const BudgetForm = ({initialValues,onSubmit}:props) => {
     
             const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
+            console.log(formValues)
             onSubmit(formValues);
         };
-
+                {console.log(initialValues)}
     return(
         <form onSubmit={handleSubmit}>
             <CenterBox>
@@ -49,12 +51,14 @@ const BudgetForm = ({initialValues,onSubmit}:props) => {
                     <CategorySelector></CategorySelector>         
                 </HStack>
                 <HStack padding={5}>
-                    <Button>add</Button>
+                    <Button type="submit">add</Button>
                     <Button>cancel</Button>
                 </HStack>
             </CenterBox>
         </form>
+
     )
+    
 }
 
 export default BudgetForm;

@@ -10,7 +10,7 @@ import useDeleteBudget from "../../hooks/deletehook/budgethook";
 const DeleteBudget = () => {
     const { id } = useParams();
     const {data,isLoading,isError} = UseBudget(Number(id))
-    const {user,isAuthenticated} = UseAuth()
+    const {isAuthenticated} = UseAuth()
     const {mutate} = useDeleteBudget()
     const navigate =useNavigate();
     useEffect(()=>{
@@ -30,12 +30,13 @@ const DeleteBudget = () => {
     }
     return (
         <BudgetForm initialValues={{
+            budgetid:data?.idBudget,
             amount:data?.amount,
             budgetDate:data?.budgetDate,
             categoryIdCategory:data?.categoryIdCategory,
             CategoryIdCategory2:data?.CategoryIdCategory2,
-            userIdUser:user.id,
-            userIdUser2:user
+            userIdUser:data.userIdUser,
+            userIdUser2:data.UserIdUser2
         }}
         onSubmit={values=>mutate(values)}
         />

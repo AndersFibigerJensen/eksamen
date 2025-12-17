@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import transaktionService from "../../Services/transaktionService";
+import transaktionService, { type Transaktion } from "../../Services/transaktionService";
 
 const useDeleteTransaktion=()=>
 {
     const queryClient= useQueryClient();
     
     return useMutation({
-        mutationFn:(Transaktionid:number)=> transaktionService.delete(Transaktionid),
+        mutationFn:(Transaktionid:Partial<Transaktion>)=> transaktionService.delete(Number(Transaktionid.idTransaktion)),
         onSuccess:()=> {
             queryClient.invalidateQueries()
         }

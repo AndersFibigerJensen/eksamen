@@ -6,7 +6,6 @@ import { UseAuth } from "../hooks/useAuth";
 const Navbar = () => {
 
     const {isAuthenticated,logout}=UseAuth()
-    console.log(isAuthenticated)
 
 
     return (

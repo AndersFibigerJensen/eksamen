@@ -2,6 +2,7 @@ import { Box, Button, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Textinput from "../formcomponents/TextInput";
 import { useState } from "react";
+import StatusSelector from "../formcomponents/statusSelector";
 
 
 interface goalvalues {
@@ -38,6 +39,9 @@ const GoalForm = ({initialValues,onSubmit}:props) => {
                 <HStack>
                     <Textinput isRequired={true} type="text" label="name" onChange={(e)=>handleChange("name",e.target.value)}/>
                     <Textinput isRequired={true} type="text" label="name" onChange={(e)=>handleChange("targetDate",e.target.value)}/>
+                </HStack>
+                <HStack>
+                    <StatusSelector/>
                 </HStack>
                 <HStack>
                     <Button type="submit">add </Button>

@@ -18,15 +18,12 @@ const BudgetList = () => {
             </Box>
             <Table>
                 <Thead>
-                    <Th>
                         <Tr>
                             <Th>amount you saved </Th>
                             <Th>The date you created</Th>
+                            <Th>category</Th>
                             <Th>functions </Th>
                         </Tr>
-                    </Th>
-                    <Th> date you created</Th>
-                    <Th>functions</Th>
                 </Thead>
                 <Tbody>
                     {data?.results.map((b)=>
@@ -34,7 +31,6 @@ const BudgetList = () => {
                         <Td>
                             {b.amount}
                         </Td>
-
                         <Td>
                             {b.budgetDate}
                         </Td>
@@ -43,11 +39,11 @@ const BudgetList = () => {
                         </Td>
                         <Td>
                             <HStack>
-                                <Link to={`/EditGoal/${b.idBudget}`}>
+                                <Link to={`/EditBudget/${b.idBudget}`}>
                                 <Button colorScheme="red" size="sm">Update</Button>
                                 </Link>
-                                <Link to={`/EditGoal/${b.idBudget}`}>
-                                <Button colorScheme="red" size="sm">Update</Button>
+                                <Link to={`/DeleteBudget/${b.idBudget}`}>
+                                <Button colorScheme="red" size="sm">delete</Button>
                                 </Link>
                             </HStack>
                         </Td>

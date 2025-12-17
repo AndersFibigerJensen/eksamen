@@ -5,7 +5,7 @@ interface props {
     Onchange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const typeSelector:React.FC<props> = ({Onchange}) => {
+const TypeSelector:React.FC<props> = ({Onchange}) => {
     return (
         <Select onChange={Onchange}>
             <option>income</option>
@@ -16,4 +16,4 @@ const typeSelector:React.FC<props> = ({Onchange}) => {
 
 }
 
-export default typeSelector
+export default TypeSelector
